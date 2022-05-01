@@ -8,9 +8,31 @@ async function getWeatherByLocation() {
     "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=" + key + "&units=metric"
   );
   const weatherData = await response.json();
+  // TODO error handling (no response)
   
   console.log(weatherData);
+  displayWeatherInformation(weatherData);
 }
 
-const btn = document.querySelector("button");
-btn.addEventListener("click", getWeatherByLocation, false);
+async function displayWeatherInformation(weatherData) {
+  const tempDisplay = document.getElementById("temperature");
+  const descDisplay = document.getElementById("description");
+  const locationDisplay = document.getElementById("location");
+
+  let location = weatherData.name;
+  let description = weatherData.weather[0].main;
+  let temperature = weatherData.main.temp;
+
+  locationDisplay.textContent = location;
+  descDisplay.textContent = description;
+  tempDisplay.textContent = temperature + "c";
+}
+
+
+
+document.addEventListener("DOMContentLoaded", bindEventListeners);
+
+function bindEventListeners() {
+  const btn = document.querySelector("button");
+  btn.addEventListener("click", getWeatherByLocation, false);
+}
