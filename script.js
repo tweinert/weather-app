@@ -33,6 +33,17 @@ async function displayWeatherInformation(weatherData) {
 document.addEventListener("DOMContentLoaded", bindEventListeners);
 
 function bindEventListeners() {
+  // get weather button
   const btn = document.querySelector("button");
   btn.addEventListener("click", getWeatherByLocation, false);
+
+  // text input enter key
+  const textInput = document.querySelector("input");
+  textInput.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("get-weather-btn").click();
+      textInput.value = "";
+    }
+  });
 }

@@ -1,0 +1,11 @@
+body {
+  text-align: center;
+}
+
+#main {
+  margin-top: 20vh;
+}
+
+img {
+  border: 1px solid black;
+}
